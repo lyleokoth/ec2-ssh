@@ -1,0 +1,36 @@
+# action.yml
+name: 'EC2 SSH'
+description: 'ssh into an EC2 instance do a git pull and restart the service.'
+inputs:
+  private_key:  # id of input
+    description: 'The private key issued out when creating the EC2 instance'
+    required: true
+    default: ''
+  user_name:  # id of input
+    description: 'The remote user account to connect to.'
+    required: true
+    default: ''
+  host_name:  # id of input
+    description: 'The remote host to connect to.'
+    required: true
+    default: ''
+  app_dir:  # id of input
+    description: 'The application directory i.e the app root folder'
+    required: true
+    default: ''
+  user_password:  # id of input
+    description: 'The remote users password. Should have admin privilege'
+    required: true
+    default: ''
+  service_name:  # id of input
+    description: 'The service to restart.'
+    required: true
+    default: ''
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.private_key, inputs.user_name, inputs.host_name,  inputs.app_dir, inputs.user_password, inputs.service_name}}

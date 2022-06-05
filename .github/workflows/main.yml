@@ -1,15 +1,22 @@
+name: "Update the application"
+
 on: [push]
 
 jobs:
-  hello_world_job:
+  update_application:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
       - name: Hello world action step
         uses: lyleokoth/ec2-ssh@v0.0.1
-        id: hello
+        id: update
         with:
-          who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
+          PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+          HOST_NAME : ${{ secrets.HOST_NAME  }}
+          USER_NAME : ${{ secrets.USER_NAME  }}
+          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+          APP_DIR: ${{secrets.APP_DIR}}
+          SERVICE_NAME: ${{secrets.SERVICE_NAME}}
+
       - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+        run: echo "The time was ${{ steps.update.outputs.time }}"
