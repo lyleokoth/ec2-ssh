@@ -32,5 +32,3 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.private_key, inputs.user_name, inputs.host_name,  inputs.app_dir, inputs.user_password, inputs.service_name}}
