@@ -2,9 +2,9 @@
 
 echo "Connecting to the remote host..."
 
-echo ${PRIVATE_KEY} > private_key && chmod 600 private_key
+echo ${INPUT_PRIVATE_KEY} > private_key && chmod 600 private_key
 
-ssh -o StrictHostKeyChecking=no -i ${PRIVATE_KEY} ${INPUT_USER_NAME}@${INPUT_HOST_NAME} "
+ssh -o StrictHostKeyChecking=no -i private_key ${INPUT_USER_NAME}@${INPUT_HOST_NAME} "
 
     cd ${INPUT_APP_DIR} &&
     git pull &&
